@@ -1,0 +1,267 @@
+/*! cep.scss v1.0.0 | MIT License | https://github.com/HuijiFE/cep.scss */
+
+/**
+ * Configs
+ */
+
+$namespace: 'ns' !default;
+$root-font-size: 14 !default;
+
+/**
+ * Convert px to rem unit.
+ */
+@function rem($pixel) {
+  @return $pixel / $root-font-size * 1rem;
+}
+
+/**
+ * Append px unit to a number value.
+ */
+@function px($value) {
+  @return $value * 1px;
+}
+
+/**
+ * CEP
+ * The css class naming rule based on component, something like BEM.
+ */
+
+/* ----------  Component  ---------- */
+
+@function class-comp($name) {
+  @if $name != to-lower-case($name) {
+    @error 'Must use lower case class name for a component. "#{$name}"';
+  }
+  @return '#{$namespace}-#{$name}';
+}
+
+/**
+ * Generate root selector for a component.
+ * 
+ * @include comp('button') {}
+ * 
+ * .vd-button {}
+ */
+@mixin comp($name) {
+  $C: class-comp($name) !global;
+
+  @at-root {
+    .#{$C} {
+      @content;
+    }
+  }
+}
+
+/* ----------  Element  ---------- */
+
+@function class-elem($name) {
+  @return '#{$C}_#{$name}';
+}
+
+/**
+ * Generate selector for elements, support multi elements.
+ * 
+ * @include comp('button') {
+ *   @include elem('icon') {}
+ * }
+ * 
+ * .vd-button {
+ *   .vd-button_icon {}
+ * }
+ */
+@mixin elem($name-list...) {
+  $selector: &;
+
+  @each $name in $name-list {
+    $elements-selector: '.#{class-elem($name)}';
+
+    @at-root {
+      #{$selector} {
+        #{$elements-selector} {
+          @content;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Generate adjacent sibling combinator for elements.
+ * 
+ * @include comp('list') {
+ *   @include elem-adjacent('item') {}
+ * }
+ * 
+ * .vd-list {
+ *   .vd-list_item + .vd-list_item {}
+ * }
+ */
+@mixin elem-adjacent($name-former, $name-target: null) {
+  @if $name-target == null {
+    $element-target: $name-former;
+  }
+  $selector: &;
+
+  @at-root {
+    #{$selector} {
+      .#{class-elem($name-former)} + .#{class-elem($name-target)} {
+        @content;
+      }
+    }
+  }
+}
+
+/**
+ * Generate general sibling combinator for elements.
+ * 
+ * @include comp('list') {
+ *   @include elem-general('item') {}
+ * }
+ * 
+ * .vd-list {
+ *   .vd-list_item ~ .vd-list_item {}
+ * }
+ */
+@mixin elem-general($name-former, $name-target: null) {
+  @if $name-target == null {
+    $element-target: $name-former;
+  }
+  $selector: &;
+
+  @at-root {
+    #{$selector} {
+      .#{class-elem($name-former)} ~ .#{class-elem($name-target)} {
+        @content;
+      }
+    }
+  }
+}
+
+/* ----------  Property  ---------- */
+
+@function class-prop($name, $value) {
+  @return '#{$namespace}p-#{$name}_#{$value}';
+}
+
+/**
+ * Generate selector for properties of a component.
+ * 
+ * @include comp('button') {
+ *   @include prop(( skin: 'plain', theme: 'dark', )) {}
+ * }
+ * 
+ * .vd-button.vdp-skin-plain.vdp-theme-dark {}
+ * 
+ * NOTE: The prop mixin is only for components, not for elements
+ */
+@mixin prop($name-value-map-list...) {
+  @each $name-value-map in $name-value-map-list {
+    $props-selector: '';
+    @each $name, $value in $name-value-map {
+      $props-selector: '#{$props-selector}.#{class-prop($name, $value)}';
+    }
+
+    @at-root {
+      .#{$C}#{$props-selector} {
+        @content;
+      }
+    }
+  }
+}
+
+/* ----------  Status  ---------- */
+
+@function class-status($status) {
+  @return 'is-#{$status}';
+}
+
+/**
+ * Generate selector for boolean properties of a component.
+ * 
+ * @include comp('menu-item') {
+ *   @include when('selected') {}
+ * }
+ * 
+ * .menu-item.is-selected {}
+ * 
+ * ----
+ * 
+ * @include comp('list') {
+ *   @include elem('item') {
+ *     @include when('selected', 'raised') {
+ *       // ...
+ *     }
+ *   }
+ * }
+ * 
+ * .vd-list {
+ *   .vd-list_item.is-selected.is-raised {}
+ * }
+ */
+
+@mixin when($status-list...) {
+  $status-selector: &;
+  @each $status in $status-list {
+    $status-selector: '#{$status-selector}.#{class-status($status)}';
+  }
+
+  @at-root {
+    #{$status-selector} {
+      @content;
+    }
+  }
+}
+
+@mixin when-or($status-list...) {
+  $selector: &;
+  $status-selector: '';
+
+  @each $status in $status-list {
+    $status-selector: '#{$selector}.#{class-status($status)}';
+
+    @at-root {
+      #{$status-selector} {
+        @content;
+      }
+    }
+  }
+}
+
+/* ----------  Atomic  ---------- */
+
+@function class-atom($name, $value: null) {
+  $class-name: '#{$namespace}a-#{$name}';
+  @if $value != null {
+    $class-name: '#{$class-name}_#{$value}';
+  }
+  @return $class-name;
+}
+
+// Create a nested atomic block in other selectors.
+@mixin atom($name, $value: null) {
+  $class-name: class-atom($name, $value);
+  .#{$class-name} {
+    @content;
+  }
+}
+
+// Define a atomic selector.
+@mixin define-atom($name, $value: null) {
+  $class-name: class-atom($name, $value);
+  @at-root {
+    .#{$class-name},
+    %#{$class-name} {
+      @content;
+    }
+  }
+}
+
+// Extend a atomic selector.
+@mixin extend-atom($name, $value: null) {
+  @extend .#{class-atom($name, $value)};
+}
+
+// Inline the rules from a atomic selector.
+@mixin inherit-atom($name, $value: null) {
+  @extend %#{class-atom($name, $value)};
+}
