@@ -98,7 +98,7 @@ $root-font-size: 14 !default;
  */
 @mixin elem-adjacent($name-former, $name-target: null) {
   @if $name-target == null {
-    $element-target: $name-former;
+    $name-target: $name-former;
   }
   $selector: &;
 
@@ -124,7 +124,7 @@ $root-font-size: 14 !default;
  */
 @mixin elem-general($name-former, $name-target: null) {
   @if $name-target == null {
-    $element-target: $name-former;
+    $name-target: $name-former;
   }
   $selector: &;
 

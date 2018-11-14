@@ -2,6 +2,11 @@
   "name": "cep.scss",
   "version": "1.0.0",
   "description": "CEP: Component, Element and Property, a methodology that help you styling single file component.",
+  "keywords": [
+    "css",
+    "scss",
+    "methodology"
+  ],
   "main": "cep.scss",
   "repository": "git@github.com:HuijiFE/cep.scss.git",
   "author": "duduluu <duduluu@outlook.com>",
