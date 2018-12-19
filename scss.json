@@ -1,0 +1,69 @@
+{
+  // These are snippets about CEP.scss for VSCode.
+  "Convert px to rem unit": {
+    "prefix": "rem",
+    "body": "rem($1)",
+    "description": "Calculate the rem unit with root font size."
+  },
+  "Append px unit to a number value": {
+    "prefix": "px",
+    "body": "px($1)"
+  },
+  "Create control": {
+    "prefix": "ctrl",
+    "body": [
+      "/**",
+      " * Control: ${1:Control}",
+      " */",
+      "@include comp('${2:control}') {",
+      "  $0",
+      "}"
+    ],
+    "description": "Create style sheet for a control/component."
+  },
+  "Create component": {
+    "prefix": "comp",
+    "body": [
+      "/**",
+      " * Component: ${1:Control}",
+      " */",
+      "@include comp('${2:control}') {",
+      "  $0",
+      "}"
+    ],
+    "description": "Create style sheet for a control/component."
+  },
+  "Create element": {
+    "prefix": "elem",
+    "body": ["@include elem('${1:element}'$2) {", "  $0", "}"],
+    "description": "Create style sheet for elements."
+  },
+  "Create when": {
+    "prefix": "when",
+    "body": ["@include when('${1:status}'$2) {", "  $0", "}"],
+    "description": "Create style sheet for status."
+  },
+  "Create when-or": {
+    "prefix": "when-or",
+    "body": ["@include when-or('${1:status}', ${2:status}$3) {", "  $0", "}"],
+    "description": "Create style sheet for status."
+  },
+  "Create prop": {
+    "prefix": "prop",
+    "body": [
+      "@include prop(",
+      "  (",
+      "    '${1:property}': $${1:property}$2,$3",
+      "  )",
+      ") {",
+      "  $0",
+      "}"
+    ],
+    "description": "Create style sheet for properties."
+  },
+  "Create atom": {
+    "prefix": "atom",
+    "body": ["@include atom('${1:name}', ${2:null}$3) {", "  $0", "}"],
+    "description": "Create style sheet for atom."
+  }
+}

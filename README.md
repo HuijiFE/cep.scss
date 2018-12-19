@@ -25,7 +25,7 @@ The CEP provides a series of mixins and functions to help you writing stylesheet
 - core mixin： `comp()`, `elem()`, `prop()`, `when()`
 - core function: `rem()`
 
-----
+---
 
 ### Namespace `<ns>-*`
 
@@ -56,7 +56,7 @@ $namespace: 'v';
 @import 'src/views/article.scss';
 ```
 
-----
+---
 
 ### Component `<ns>-<component>`
 
@@ -76,7 +76,7 @@ The mixin `comp($name)` will auto generate a selector at root:
 
 - `.hj-button`.
 
-----
+---
 
 ### Element `<ns>-<component>_<element>`
 
@@ -115,7 +115,7 @@ The mixin `elem($name-list...)` will auto generate selectors:
 
 > Note: don't nest elements block in scss if not necessary.
 
-----
+---
 
 ### Property `<ns>p-<name>_<value>`
 
@@ -156,7 +156,7 @@ $background-color-map: (
     @include prop(
       (
         'theme': $theme,
-        'size': 'large',
+        'size': 'large'
       )
     ) {
       // style when the the theme is specified and the size is 'large'
@@ -174,7 +174,7 @@ The mixin `prop($name-value-map-list...)` will auto generate selectors:
 
 > Note: the `prop` is only for components, not for elements, usually used with `@each` and `map`.
 
-----
+---
 
 ### status `is-<status>`
 
@@ -214,7 +214,7 @@ Them mixin `when-or($status-list...)` will auto generate selectors:
 
 > `when` and `when-or` can be used under both of components and elements.
 
-----
+---
 
 ### `rem($pixel)`
 
@@ -233,6 +233,7 @@ $root-font-size: 100;
 ```
 
 Mobile devices
+
 ```scss
 $root-font-size: 320;
 
@@ -249,11 +250,13 @@ $root-font-size: 320;
 
 > Note: you need write the `font-size` in the `:root` selector yourself
 
-----
+---
 
 ### Others
 
-More mixins and functions, like `atom`, please checkout the source code.
+More mixins and functions, like `atom`, please checkout the [source code](./cep.scss).
+
+Snippets for VSCode: [scss.json](./scss.json)
 
 ## Projects using CEP
 
