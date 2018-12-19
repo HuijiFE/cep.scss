@@ -1,8 +1,13 @@
 {
   "name": "cep.scss",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CEP: Component, Element and Property, a methodology that help you styling single file component.",
-  "keywords": ["css", "scss", "methodology", "component"],
+  "keywords": [
+    "css",
+    "scss",
+    "methodology",
+    "component"
+  ],
   "main": "cep.scss",
   "homepage": "https://github.com/HuijiFE/cep.scss",
   "repository": "git@github.com:HuijiFE/cep.scss.git",
