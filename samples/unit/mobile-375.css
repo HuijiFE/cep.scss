@@ -1,0 +1,24 @@
+/**
+ * Unit mobile-375
+ */
+/* This maybe the best response solution for mobile devices, I think. */
+:root {
+  font-size: 100vw;
+}
+
+.foo {
+  /* this should be `2rem`, computed to `750px` */
+  width: 2rem;
+}
+
+.bar {
+  /* this should be `0.5rem`, computed to `375px` */
+  width: 1rem;
+}
+
+.foobar {
+  /* this should be `0.1rem`, computed to `37.5px` */
+  width: 0.1rem;
+}
+
+/*# sourceMappingURL=mobile-375.css.map */

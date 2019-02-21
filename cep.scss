@@ -1,47 +1,39 @@
-/*! cep.scss v1.0.0 | MIT License | https://github.com/HuijiFE/cep.scss */
+// cep.scss v1.0.0 | MIT License | https://github.com/HuijiFE/cep.scss
+// The css class naming rule based on component, something like BEM.
 
-/**
- * Configs
- */
-
+// Configs
 $namespace: 'ns' !default;
 $root-font-size: 14 !default;
+$cep-unit-multiple: 1 !default;
+$cep-lower-case-name: true !default;
 
-/**
- * Convert px to rem unit.
- */
-@function rem($pixel) {
-  @return $pixel / $root-font-size * 1rem;
+// Convert number value to rem unit.
+@function rem($value) {
+  @return $value * $cep-unit-multiple / $root-font-size * 1rem;
 }
 
-/**
- * Append px unit to a number value.
- */
+// Append px unit to a number value.
 @function px($value) {
-  @return $value * 1px;
+  @return $value / $cep-unit-multiple * 1px;
 }
 
-/**
- * CEP
- * The css class naming rule based on component, something like BEM.
- */
-
-/* ----------  Component  ---------- */
+// ----------  Component  ----------
 
 @function class-comp($name) {
-  @if $name != to-lower-case($name) {
-    @error 'Must use lower case class name for a component. "#{$name}"';
+  @if $cep-lower-case-name {
+    @if $name != to-lower-case($name) {
+      @error 'Must use lower case class name for a component. "#{$name}"';
+    }
   }
   @return '#{$namespace}-#{$name}';
 }
 
-/**
- * Generate root selector for a component.
- * 
- * @include comp('button') {}
- * 
- * .vd-button {}
- */
+// Generate root selector for a component.
+//
+// @include comp('button') {}
+//
+// .vd-button {}
+
 @mixin comp($name) {
   $C: class-comp($name) !global;
 
@@ -52,23 +44,26 @@ $root-font-size: 14 !default;
   }
 }
 
-/* ----------  Element  ---------- */
+// ----------  Element  ----------
 
 @function class-elem($name) {
+  @if $cep-lower-case-name {
+    @if $name != to-lower-case($name) {
+      @error 'Must use lower case class name for a element. "#{$name}"';
+    }
+  }
   @return '#{$C}_#{$name}';
 }
 
-/**
- * Generate selector for elements, support multi elements.
- * 
- * @include comp('button') {
- *   @include elem('icon') {}
- * }
- * 
- * .vd-button {
- *   .vd-button_icon {}
- * }
- */
+// Generate selector for elements, support multi elements.
+//
+// @include comp('button') {
+//   @include elem('icon') {}
+// }
+//
+// .vd-button {
+//   .vd-button_icon {}
+// }
 @mixin elem($name-list...) {
   $selector: &;
 
@@ -85,17 +80,15 @@ $root-font-size: 14 !default;
   }
 }
 
-/**
- * Generate adjacent sibling combinator for elements.
- * 
- * @include comp('list') {
- *   @include elem-adjacent('item') {}
- * }
- * 
- * .vd-list {
- *   .vd-list_item + .vd-list_item {}
- * }
- */
+// Generate adjacent sibling combinator for elements.
+//
+// @include comp('list') {
+//   @include elem-adjacent('item') {}
+// }
+//
+// .vd-list {
+//   .vd-list_item + .vd-list_item {}
+// }
 @mixin elem-adjacent($name-former, $name-target: null) {
   @if $name-target == null {
     $name-target: $name-former;
@@ -111,17 +104,15 @@ $root-font-size: 14 !default;
   }
 }
 
-/**
- * Generate general sibling combinator for elements.
- * 
- * @include comp('list') {
- *   @include elem-general('item') {}
- * }
- * 
- * .vd-list {
- *   .vd-list_item ~ .vd-list_item {}
- * }
- */
+// Generate general sibling combinator for elements.
+//
+// @include comp('list') {
+//   @include elem-general('item') {}
+// }
+//
+// .vd-list {
+//   .vd-list_item ~ .vd-list_item {}
+// }
 @mixin elem-general($name-former, $name-target: null) {
   @if $name-target == null {
     $name-target: $name-former;
@@ -137,23 +128,21 @@ $root-font-size: 14 !default;
   }
 }
 
-/* ----------  Property  ---------- */
+// ----------  Property  ----------
 
 @function class-prop($name, $value) {
   @return '#{$namespace}p-#{$name}_#{$value}';
 }
 
-/**
- * Generate selector for properties of a component.
- * 
- * @include comp('button') {
- *   @include prop(( skin: 'plain', theme: 'dark', )) {}
- * }
- * 
- * .vd-button.vdp-skin-plain.vdp-theme-dark {}
- * 
- * NOTE: The prop mixin is only for components, not for elements
- */
+// Generate selector for properties of a component.
+//
+// @include comp('button') {
+//   @include prop(( skin: 'plain', theme: 'dark', )) {}
+// }
+//
+// .vd-button.vdp-skin-plain.vdp-theme-dark {}
+//
+// NOTE: The prop mixin is only for components, not for elements
 @mixin prop($name-value-map-list...) {
   @each $name-value-map in $name-value-map-list {
     $props-selector: '';
@@ -169,36 +158,33 @@ $root-font-size: 14 !default;
   }
 }
 
-/* ----------  Status  ---------- */
+// ----------  Status  ----------
 
 @function class-status($status) {
   @return 'is-#{$status}';
 }
 
-/**
- * Generate selector for boolean properties of a component.
- * 
- * @include comp('menu-item') {
- *   @include when('selected') {}
- * }
- * 
- * .menu-item.is-selected {}
- * 
- * ----
- * 
- * @include comp('list') {
- *   @include elem('item') {
- *     @include when('selected', 'raised') {
- *       // ...
- *     }
- *   }
- * }
- * 
- * .vd-list {
- *   .vd-list_item.is-selected.is-raised {}
- * }
- */
-
+// Generate selector for boolean properties of a component.
+//
+// @include comp('menu-item') {
+//   @include when('selected') {}
+// }
+//
+// .menu-item.is-selected {}
+//
+// ----
+//
+// @include comp('list') {
+//   @include elem('item') {
+//     @include when('selected', 'raised') {
+//       // ...
+//     }
+//   }
+// }
+//
+// .vd-list {
+//   .vd-list_item.is-selected.is-raised {}
+// }
 @mixin when($status-list...) {
   $status-selector: &;
   @each $status in $status-list {
@@ -227,7 +213,7 @@ $root-font-size: 14 !default;
   }
 }
 
-/* ----------  Atomic  ---------- */
+// ----------  Atomic  ----------
 
 @function class-atom($name, $value: null) {
   $class-name: '#{$namespace}a-#{$name}';

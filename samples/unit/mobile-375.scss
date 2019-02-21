@@ -1,0 +1,27 @@
+@import '../../cep.scss';
+
+/**
+ * Unit mobile-375
+ */
+
+/* This maybe the best response solution for mobile devices, I think. */
+
+$root-font-size: 375;
+:root {
+  font-size: 100vw;
+}
+
+.foo {
+  /* this should be `2rem`, computed to `750px` */
+  width: rem(750);
+}
+
+.bar {
+  /* this should be `0.5rem`, computed to `375px` */
+  width: rem(375);
+}
+
+.foobar {
+  /* this should be `0.1rem`, computed to `37.5px` */
+  width: rem(37.5);
+}

@@ -1,0 +1,50 @@
+:root {
+  --theme-lite-fg: #333;
+  --theme-lite-bg: #eee;
+  --theme-dark-fg: #f0f0f0;
+  --theme-dark-bg: #404040;
+}
+
+/**
+ * Component: VdButton
+ */
+.vd-button {
+  position: relative;
+  flex: 1 1 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: 0.32rem;
+  padding: 0.32rem;
+  font-size: 0.16rem;
+  line-height: 1.4;
+}
+.vd-button .vd-button_icon {
+  color: inherit;
+}
+
+.vd-button .vd-button_content {
+  color: inherit;
+}
+
+.vd-button .vd-button_icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1em;
+}
+
+.vd-button.is-disabled {
+  cursor: not-allowed;
+}
+
+.vd-button.vdp-theme_lite {
+  color: var(--theme-lite-fg);
+  background-color: var(--theme-lite-bg);
+}
+
+.vd-button.vdp-theme_dark {
+  color: var(--theme-dark-fg);
+  background-color: var(--theme-dark-bg);
+}
+
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,25 @@
+@import '../../cep.scss';
+
+/**
+ * Unit pc-100
+ */
+
+$root-font-size: 100;
+:root {
+  font-size: $root-font-size * 1px;
+}
+
+.foo {
+  /* this should be `7.5rem`, computed to `750px` */
+  width: rem(750);
+}
+
+.bar {
+  /* this should be `3.5rem`, computed to `375px` */
+  width: rem(375);
+}
+
+.foobar {
+  /* this should be `0.16rem`, computed to `16px` */
+  width: rem(16);
+}

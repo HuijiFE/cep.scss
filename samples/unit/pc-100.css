@@ -1,0 +1,23 @@
+/**
+ * Unit pc-100
+ */
+:root {
+  font-size: 100px;
+}
+
+.foo {
+  /* this should be `7.5rem`, computed to `750px` */
+  width: 7.5rem;
+}
+
+.bar {
+  /* this should be `3.5rem`, computed to `375px` */
+  width: 3.75rem;
+}
+
+.foobar {
+  /* this should be `0.16rem`, computed to `16px` */
+  width: 0.16rem;
+}
+
+/*# sourceMappingURL=pc-100.css.map */

@@ -1,5 +1,11 @@
 # CEP.scss
 
+[![cep.scss-version]][cep.scss] [![cep.scss-downloads]][cep.scss]
+
+[cep.scss]: https://www.npmjs.com/package/cep.scss
+[cep.scss-version]: https://img.shields.io/npm/v/cep.scss.svg?style=flat-square
+[cep.scss-downloads]: https://img.shields.io/npm/dm/cep.scss.svg?style=flat-square
+
 > CEP: Component, Element and Property, a methodology that help you styling single file component.
 
 ## Installation

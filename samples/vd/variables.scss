@@ -1,0 +1,26 @@
+$root-font-size: 100;
+
+$type-theme: 'lite', 'dark';
+
+$theme-color-map: (
+  lite: (
+    fg: #333,
+    bg: #eee
+  ),
+  dark: (
+    fg: #f0f0f0,
+    bg: #404040
+  )
+);
+
+:root {
+  @each $theme, $color-map in $theme-color-map {
+    @each $role, $value in $color-map {
+      --theme-#{$theme}-#{$role}: #{$value};
+    }
+  }
+}
+
+@function theme($key, $role) {
+  @return var(--theme-#{$key}-#{$role});
+}

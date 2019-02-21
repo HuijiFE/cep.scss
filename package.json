@@ -1,16 +1,30 @@
 {
   "name": "cep.scss",
-  "version": "1.0.2",
   "description": "CEP: Component, Element and Property, a methodology that help you styling single file component.",
-  "keywords": [
-    "css",
-    "scss",
-    "methodology",
-    "component"
-  ],
+  "keywords": ["css", "scss", "methodology", "component"],
+  "version": "1.0.2",
+  "author": {
+    "name": "duduluu",
+    "email": "duduluu@outlook.com",
+    "url": "https://github.com/duduluu"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HuijiFE/cep.scss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HuijiFE/cep.scss/issues"
+  },
+  "homepage": "https://github.com/HuijiFE/cep.scss#readme",
   "main": "cep.scss",
-  "homepage": "https://github.com/HuijiFE/cep.scss",
-  "repository": "git@github.com:HuijiFE/cep.scss.git",
-  "author": "duduluu <duduluu@outlook.com>",
-  "license": "MIT"
+  "scripts": {
+    "samples:vd": "sass ./samples/vd/index.scss ./samples/vd/index.css",
+    "samples:unit": "sass ./samples/unit/:./samples/unit/",
+    "samples": "yarn samples:vd && yarn samples:unit"
+  },
+  "devDependencies": {
+    "fiber": "^1.0.4",
+    "sass": "^1.17.1"
+  }
 }

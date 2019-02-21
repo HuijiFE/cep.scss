@@ -1,0 +1,28 @@
+/**
+ * Unit mobile-750
+ * if the width of the design is 750px * 
+ * but most of mobile phones do not support * 
+ * we should set $cep-unit-multiple as 0.5 * 
+ * and set root $root-font-size as 375 (half of 750) * 
+ * so that all of input value will be cut off half for output * 
+ */
+:root {
+  font-size: 100vw;
+}
+
+.foo {
+  /* this should be `1rem` */
+  width: 1rem;
+}
+
+.bar {
+  /* this should be `0.5rem` */
+  width: 0.5rem;
+}
+
+.foobar {
+  /* this should be `0.05rem` */
+  width: 0.05rem;
+}
+
+/*# sourceMappingURL=mobile-750.css.map */

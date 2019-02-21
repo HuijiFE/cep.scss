@@ -1,0 +1,40 @@
+/**
+ * Component: VdButton
+ */
+@include comp('button') {
+  position: relative;
+  flex: 1 1 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: rem(32);
+  padding: rem(32);
+
+  font-size: rem(16);
+  line-height: 1.4;
+
+  @include elem('icon', 'content') {
+    color: inherit;
+  }
+
+  @include elem('icon') {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1em;
+    height: 1em;
+  }
+
+  @include when('disabled') {
+    cursor: not-allowed;
+  }
+
+  @each $theme in $type-theme {
+    @include prop(
+      (
+        'theme': $theme
+      )
+    ) {
+      color: theme($theme, 'fg');
+      background-color: theme($theme, 'bg');
+    }
+  }
+}
