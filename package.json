@@ -1,8 +1,13 @@
 {
   "name": "cep.scss",
   "description": "CEP: Component, Element and Property, a methodology that help you styling single file component.",
-  "keywords": ["css", "scss", "methodology", "component"],
-  "version": "1.0.2",
+  "keywords": [
+    "css",
+    "scss",
+    "methodology",
+    "component"
+  ],
+  "version": "1.1.0",
   "author": {
     "name": "duduluu",
     "email": "duduluu@outlook.com",
